@@ -70,6 +70,9 @@ REEL_CSS='''
 .contact .i{display:flex;align-items:center;gap:16px;font-size:46px;font-weight:800;direction:ltr}
 .contact .sep{width:3px;height:56px;background:var(--red)}
 .slogan{bottom:110px}
+.sanad{position:absolute;top:985px;left:85px;height:265px;transform-origin:50% 100%;filter:drop-shadow(0 10px 12px rgba(0,0,0,.25))}
+@keyframes sanadIn{0%{opacity:0;transform:translateY(120px) scale(.6)}60%{opacity:1;transform:translateY(-18px) scale(1.06)}100%{transform:none}}
+@keyframes sway{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
 @keyframes slideR{from{opacity:0;transform:translateX(120px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{opacity:0;transform:scale(.3)}70%{opacity:1;transform:scale(1.12)}100%{transform:scale(1)}}
@@ -89,6 +92,7 @@ REEL_CSS='''
 .ic:nth-child(3){animation:pop .5s ease-out both 3.8s}
 .cta{animation:fadeUp .6s ease-out both 4.5s, pulse 1.2s ease-in-out 5.3s infinite}
 .contact{animation:fadeUp .6s ease-out both 5.0s}
+.sanad{animation:sanadIn .7s cubic-bezier(.2,.8,.2,1) both 4.7s, sway 1.6s ease-in-out 5.5s infinite}
 .slogan.sw{animation:fadeUp .3s ease-out both 7.45s}
 .slogan b{display:inline-block;font-weight:900}
 .slogan .w1{animation:pop .35s ease-out both 7.6s}.slogan .w2{animation:pop .35s ease-out both 8.3s}.slogan .w3{animation:pop .35s ease-out both 8.85s}.slogan .w4{animation:pop .4s ease-out both 9.0s}
@@ -102,6 +106,7 @@ COVER_CSS='''
 .big .r{color:var(--red)}
 .herobox{position:absolute;top:960px;left:0;right:0;display:flex;justify-content:center}
 .slogan{top:1500px}
+.sanad{position:absolute;top:1090px;right:40px;height:330px;transform:rotate(4deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))}
 .ph{position:absolute;top:1640px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:16px;font-size:54px;font-weight:900;direction:ltr}
 '''
 def reel_html(r):
@@ -113,6 +118,7 @@ def reel_html(r):
 <div class="herobox">{hero(r,0.95)}</div>
 <div class="icons">{icons}</div>
 <div class="cta">{SHIELD}<div class="tx"><div>{r["cta1"]}</div><div>{r["cta2"]}</div></div></div>
+<img class="sanad" src="sanad.png">
 <div class="contact"><div class="i">{PHONE}39226646</div><div class="sep"></div><div class="i">{IG}@Jahiz.bh</div></div>
 </div><div class="slogan sw"><span><b class="w1">ارتاح</b> <b class="w2">احنا</b> <b class="w3">نهتم</b> <b class="w4">🤝</b></span></div>
 <script>window.fit=()=>{{for(const el of document.querySelectorAll('.head .k,.head .bb div')){{let s=parseFloat(getComputedStyle(el).fontSize);while(el.scrollWidth>(el.classList.contains('k')?660:630)&&s>30){{s-=2;el.style.fontSize=s+'px'}}}}}};</script>'''
@@ -123,6 +129,7 @@ def cover_html(r):
 <div class="tag"><span>{r["tag"]}</span></div>
 <div class="big">{r["b1"].rstrip('…')}<br><span class="r">{r["b2"]}</span></div>
 <div class="herobox">{hero(r,1.0)}</div>
+<img class="sanad" src="sanad.png">
 <div class="slogan"><span>ارتاح احنا نهتم 🤝</span></div>
 <div class="ph">{PHONE}39226646</div>
 <script>window.fit=()=>{{const el=document.querySelector('.big');let s=118;while(el.scrollHeight>380&&s>60){{s-=4;el.style.fontSize=s+'px'}}}};</script>'''
