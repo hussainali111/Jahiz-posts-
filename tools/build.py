@@ -70,6 +70,11 @@ REEL_CSS='''
 .contact .i{display:flex;align-items:center;gap:16px;font-size:46px;font-weight:800;direction:ltr}
 .contact .sep{width:3px;height:56px;background:var(--red)}
 .slogan{bottom:110px}
+.price{position:absolute;width:270px;height:270px;border-radius:50%;background:var(--red);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(213,17,21,.45);border:8px solid #fff;outline:4px solid var(--red);text-align:center;line-height:1}
+.price .n{font-size:120px;font-weight:900;direction:ltr}
+.price .n small{font-size:44px;font-weight:900;margin-right:6px}
+.price .v{font-size:28px;font-weight:800;margin-top:8px}
+.reelprice{top:440px;left:330px;transform:rotate(-8deg)}
 .sanad{position:absolute;top:985px;left:85px;height:265px;transform-origin:50% 100%;filter:drop-shadow(0 10px 12px rgba(0,0,0,.25))}
 @keyframes sanadIn{0%{opacity:0;transform:translateY(120px) scale(.6)}60%{opacity:1;transform:translateY(-18px) scale(1.06)}100%{transform:none}}
 @keyframes sway{0%,100%{transform:rotate(0)}25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
@@ -92,6 +97,7 @@ REEL_CSS='''
 .ic:nth-child(3){animation:pop .5s ease-out both 3.8s}
 .cta{animation:fadeUp .6s ease-out both 4.5s, pulse 1.2s ease-in-out 5.3s infinite}
 .contact{animation:fadeUp .6s ease-out both 5.0s}
+.reelprice{animation:pop .6s ease-out both 2.7s, pulse 1.1s ease-in-out 3.4s infinite}
 .sanad{animation:sanadIn .7s cubic-bezier(.2,.8,.2,1) both 4.7s, sway 1.6s ease-in-out 5.5s infinite}
 .slogan.sw{animation:fadeUp .3s ease-out both 7.45s}
 .slogan b{display:inline-block;font-weight:900}
@@ -106,16 +112,23 @@ COVER_CSS='''
 .big .r{color:var(--red)}
 .herobox{position:absolute;top:960px;left:0;right:0;display:flex;justify-content:center}
 .slogan{top:1500px}
+.price{position:absolute;width:270px;height:270px;border-radius:50%;background:var(--red);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 14px 30px rgba(213,17,21,.45);border:8px solid #fff;outline:4px solid var(--red);text-align:center;line-height:1}
+.price .n{font-size:120px;font-weight:900;direction:ltr}
+.price .n small{font-size:44px;font-weight:900;margin-right:6px}
+.price .v{font-size:28px;font-weight:800;margin-top:8px}
+.coverprice{top:1060px;left:60px;transform:rotate(-8deg) scale(1.25)}
 .sanad{position:absolute;top:1090px;right:40px;height:330px;transform:rotate(4deg);filter:drop-shadow(0 12px 14px rgba(0,0,0,.25))}
 .ph{position:absolute;top:1640px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:16px;font-size:54px;font-weight:900;direction:ltr}
 '''
+def price(r,cls):
+    return f'<div class="price {cls}"><div class="n"><small>د.ب</small>{r["price"]}</div><div class="v">شامل الضريبة</div></div>' if r.get('price') else ''
 def reel_html(r):
     icons=''.join(f'<div class="ic"><div class="c">{ic(n,64)}</div><p>{t.replace("<br>"," ")}</p></div>' for n,t in r["icons"])
     body=f'''<div class="hook">{r["hook"]}</div><div class="stage">
 <div class="brand"><img src="logo.png"><div class="t">للتكييف والمقاولات والصيانة</div><div class="y">منذ 2005</div></div>
 <div class="head"><div class="k">{r["head"]}</div><div class="bb"><div>{r["b1"]}</div><div>{r["b2"]}</div></div></div>
 <div class="sub">{r["small"]}</div><div class="line"></div>
-<div class="herobox">{hero(r,0.95)}</div>
+<div class="herobox">{hero(r,0.95)}</div>{price(r,"reelprice")}
 <div class="icons">{icons}</div>
 <div class="cta">{SHIELD}<div class="tx"><div>{r["cta1"]}</div><div>{r["cta2"]}</div></div></div>
 <img class="sanad" src="sanad.png">
@@ -128,7 +141,7 @@ def cover_html(r):
     body=f'''<div class="brand"><img src="logo.png"><div class="t">للتكييف والمقاولات والصيانة</div><div class="y">منذ 2005</div></div>
 <div class="tag"><span>{r["tag"]}</span></div>
 <div class="big">{r["b1"].rstrip('…')}<br><span class="r">{r["b2"]}</span></div>
-<div class="herobox">{hero(r,1.0)}</div>
+<div class="herobox">{hero(r,1.0)}</div>{price(r,"coverprice")}
 <img class="sanad" src="sanad.png">
 <div class="slogan"><span>ارتاح احنا نهتم 🤝</span></div>
 <div class="ph">{PHONE}39226646</div>
