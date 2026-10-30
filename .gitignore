@@ -1,0 +1,6 @@
+tools/out/
+tools/music/*.wav
+tools/music/*.png
+tools/*.wav
+tools/*.mp4
+__pycache__/
