@@ -149,7 +149,8 @@ def cover_html(r):
 <div class="ph">{PHONE}39226646</div>
 <script>window.fit=()=>{{const el=document.querySelector('.big');let s=118;while(el.scrollHeight>380&&s>60){{s-=4;el.style.fontSize=s+'px'}}}};</script>'''
     return BASE.replace('%CSS%',COVER_CSS).replace('%BODY%',body)
-data=json.load(open('reels.json'))
+import sys
+data=json.load(open(sys.argv[1] if len(sys.argv)>1 else 'reels.json'))
 os.makedirs('out',exist_ok=True)
 for r in data:
     open(f'out/{r["slug"]}.html','w').write(reel_html(r))
