@@ -89,7 +89,9 @@ REEL_CSS='''
 .ic:nth-child(3){animation:pop .5s ease-out both 3.8s}
 .cta{animation:fadeUp .6s ease-out both 4.5s, pulse 1.2s ease-in-out 5.3s infinite}
 .contact{animation:fadeUp .6s ease-out both 5.0s}
-.slogan{animation:pop .6s ease-out both 5.6s}
+.slogan.sw{animation:fadeUp .3s ease-out both 7.45s}
+.slogan b{display:inline-block;font-weight:900}
+.slogan .w1{animation:pop .35s ease-out both 7.6s}.slogan .w2{animation:pop .35s ease-out both 8.3s}.slogan .w3{animation:pop .35s ease-out both 8.85s}.slogan .w4{animation:pop .4s ease-out both 9.0s}
 '''
 COVER_CSS='''
 .brand{position:absolute;top:120px;left:0;right:0}
@@ -112,7 +114,7 @@ def reel_html(r):
 <div class="icons">{icons}</div>
 <div class="cta">{SHIELD}<div class="tx"><div>{r["cta1"]}</div><div>{r["cta2"]}</div></div></div>
 <div class="contact"><div class="i">{PHONE}39226646</div><div class="sep"></div><div class="i">{IG}@Jahiz.bh</div></div>
-</div><div class="slogan"><span>ارتاح احنا نهتم 🤝</span></div>
+</div><div class="slogan sw"><span><b class="w1">ارتاح</b> <b class="w2">احنا</b> <b class="w3">نهتم</b> <b class="w4">🤝</b></span></div>
 <script>window.fit=()=>{{for(const el of document.querySelectorAll('.head .k,.head .bb div')){{let s=parseFloat(getComputedStyle(el).fontSize);while(el.scrollWidth>(el.classList.contains('k')?660:630)&&s>30){{s-=2;el.style.fontSize=s+'px'}}}}}};</script>'''
     return BASE.replace('%CSS%',REEL_CSS).replace('%BODY%',body)
 def cover_html(r):
