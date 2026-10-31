@@ -37,6 +37,8 @@ body{width:1080px;height:1920px;font-family:Cairo,sans-serif;background:#fff;col
 .brand .y{font-size:22px;font-weight:800;color:var(--red);margin-top:2px}
 .brand .y:before,.brand .y:after{content:"";display:inline-block;width:34px;height:2px;background:var(--gray);vertical-align:middle;margin:0 10px}
 .ring{width:440px;height:440px;border-radius:50%;background:#f4f4f4;border:6px solid var(--red);display:flex;align-items:center;justify-content:center;position:relative}
+.ring.photo{border-radius:36px;background:#fff;overflow:visible}
+.ring.photo img{width:100%;height:100%;object-fit:cover;border-radius:30px}
 .ring .b{position:absolute;width:110px;height:110px;border-radius:50%;background:var(--gray);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.18)}
 .ring .b1{top:-20px;left:10px}.ring .b2{bottom:10px;left:-30px}.ring .b3{bottom:-10px;right:20px}
 .slogan{position:absolute;left:0;right:0;text-align:center}
@@ -45,7 +47,10 @@ body{width:1080px;height:1920px;font-family:Cairo,sans-serif;background:#fff;col
 </style></head><body><div class="grid"></div>%BODY%</body></html>'''
 def hero(r,scale=1.0):
     b=''.join(f'<div class="b b{i+1}">{ic(n,62,"#fff",1.9)}</div>' for i,n in enumerate(r["heroB"]))
-    return f'<div class="ring" style="transform:scale({scale})">{ic(r["hero"],250,"#D51115",1.5)}{b}</div>'
+    if r.get("heroPhoto"):
+        return f'<div class="ring photo" style="transform:scale({scale})"><img src="{r["heroPhoto"]}">{b}</div>'
+    art=open(f'art/{r["heroArt"]}.svg').read() if r.get("heroArt") else ic(r["hero"],250,"#D51115",1.5)
+    return f'<div class="ring" style="transform:scale({scale})">{art}{b}</div>'
 REEL_CSS='''
 .stage{position:absolute;top:250px;left:0;width:1080px;height:1350px}
 .hook{position:absolute;top:100px;left:40px;right:40px;text-align:center;font-size:58px;font-weight:900;color:var(--gray)}
