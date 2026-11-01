@@ -15,7 +15,7 @@ P = sys.argv[1:4] if len(sys.argv) >= 4 else ['XX', 'XX', 'XX']
 SLUG = sys.argv[4] if len(sys.argv) > 4 else 'tanks-prices'
 VAT = sys.argv[5] if len(sys.argv) > 5 else 'شامل الضريبة'
 
-COLORS = [('#29B6F6', '#0277BD'), ('#26C6DA', '#00838F'), ('#5C9DFF', '#1E4FC2')]
+COLORS = [('#29B6F6', '#0277BD')] * 3
 
 def tank(i, c, w=96):
     a, b = c
