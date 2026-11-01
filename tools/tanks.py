@@ -53,7 +53,7 @@ CSS_COMMON = '''
 '''
 
 REEL_CSS = CSS_COMMON + '''
-.hook{position:absolute;top:95px;left:40px;right:40px;text-align:center;font-size:58px;font-weight:900}
+.hook{position:absolute;top:95px;left:30px;right:30px;text-align:center;font-size:52px;font-weight:900;color:var(--red);white-space:nowrap}
 .brand{position:absolute;top:220px;left:50px;width:300px}
 .head{position:absolute;top:230px;right:60px;width:640px;text-align:right}
 .head .k{font-size:80px;font-weight:900;color:var(--red);line-height:1.15;white-space:nowrap}
@@ -101,13 +101,14 @@ COVER_CSS = CSS_COMMON + '''
 .big{position:absolute;top:500px;left:30px;right:30px;text-align:center;white-space:nowrap;font-size:72px;font-weight:900;line-height:1.15}
 .big .r{color:var(--red)}
 .t1{top:660px}.t2{top:920px}.t3{top:1180px}
-.vat{top:1430px}
-.slogan{top:1530px}
-.ph{position:absolute;top:1690px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:16px;font-size:54px;font-weight:900;direction:ltr}
+.vat{top:1418px}
+.warn{position:absolute;top:1475px;left:0;right:0;text-align:center;font-size:38px;font-weight:900;color:var(--gray)}
+.slogan{top:1560px}
+.ph{position:absolute;top:1705px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:16px;font-size:54px;font-weight:900;direction:ltr}
 '''
 
 def reel():
-    body = f'''<div class="hook">متى آخر مرة نظّفت خزانك؟ 💧</div>
+    body = f'''<div class="hook">⚠️ إهمال تنظيف الخزان يأثر على صحتك</div>
 <div class="brand"><img src="logo.png"><div class="t">للتكييف والمقاولات والصيانة</div><div class="y">منذ 2005</div></div>
 <div class="head"><div class="k">تنظيف الخزانات</div><div class="s">تنظيف + تعقيم كامل</div></div>
 <div class="nw">🚫 <b>بدون دخول العمال</b> في الخزان</div>
@@ -125,6 +126,7 @@ def cover():
 <div class="big"><span class="r">بدون دخول</span> العمال في الخزان</div>
 {tier(1,P[0],90)}{tier(2,P[1],90)}{tier(3,P[2],90)}
 <div class="vat">الأسعار {VAT}</div>
+<div class="warn">⚠️ إهمال تنظيف الخزان يأثر على صحتك وصحة عيالك</div>
 <div class="slogan"><span>ارتاح احنا نهتم 🤝</span></div>
 <div class="ph">{B.PHONE}39226646</div>%FIT%'''
     return B.BASE.replace('%CSS%', COVER_CSS).replace('%BODY%', body.replace('%FIT%', FIT))
